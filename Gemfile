@@ -57,5 +57,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3'
 
+# for optimization of image uploaded
+gem 'carrierwave-imageoptimizer'
+
+
 # Materialize front-end framework
 gem 'materialize-sass'

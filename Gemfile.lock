@@ -71,6 +71,9 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    carrierwave-imageoptimizer (1.4.0)
+      carrierwave (>= 0.8, < 2.0)
+      image_optimizer (~> 1.6)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -99,6 +102,7 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     i18n (0.7.0)
+    image_optimizer (1.7.0)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
       has_scope (~> 0.6.0.rc)
@@ -220,6 +224,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   carrierwave (~> 0.10.0)
+  carrierwave-imageoptimizer
   coffee-rails (~> 4.1.0)
   devise (= 4.1.1)
   haml (= 4.0.7)
