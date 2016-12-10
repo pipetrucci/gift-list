@@ -49,3 +49,13 @@ end
 gem "haml", '4.0.7'
 gem "activeadmin", '~> 1.0.0.pre2'
 
+gem 'devise', '4.1.1'
+
+#Bootstrap 3
+gem 'bootstrap-sass', '~> 3.3.6'
+
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 4.3'
+
+# Materialize front-end framework
+gem 'materialize-sass'

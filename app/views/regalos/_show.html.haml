@@ -1,0 +1,65 @@
+#modal1.modal
+  .modal-content
+    %p#notice= notice
+    .row
+      .col.s12.m6
+        = image_tag "#{@regalo.img_product.url.present? ? @regalo.img_product.url : 'http://placehold.it/250x236'}", class: "img-responsive", width: "100%"
+      .col.s12.m6
+        %h5
+          = @regalo.name
+        -if @regalo.description.present?
+          %p
+            %strong Description:
+            = @regalo.description
+
+        - if !@regalo.price_min.present?
+          %p
+            = number_to_currency(@regalo.price_max, precision: 0, separator: ".", unit: "$", format: "%u %n")
+        - else
+          %p
+            = "#{number_to_currency(@regalo.price_min, precision: 0, separator: ".", unit: "$", format: "%u %n")} - #{number_to_currency(@regalo.price_max, precision: 0, separator: ".", unit: "$", format: "%u %n")}"
+
+        -if @regalo.state == 1
+          .chip
+            = image_tag @user.img_contact.thumb.url
+            = @user.name
+
+        %br
+        %br
+
+        %p
+          %strong Link:
+          = link_to "#{@regalo.link}", @regalo.link, target: "_blank"
+        %small
+          *Este regalo lo vimos aquí, aunque puedes buscar
+          otros lugares donde lo vendan.
+    .row
+      .col.s12.m12
+
+  .modal-footer
+    %a.modal-action.modal-close.waves-effect.waves-green.btn-flat{:href => "#!"} Agree
+
+-#
+-#%p#notice= notice
+-#%p
+-#  %strong Name:
+-#  = @regalo.name
+-#%p
+-#  %strong Description:
+-#  = @regalo.description
+-#%p
+-#  %strong Price-min:
+-#  = @regalo.price_min
+-#%p
+-#  %strong Price-max:
+-#  = @regalo.price_max
+-#%p
+-#  %strong Link:
+-#  = @regalo.link
+-#%p
+-#  %strong Img-product:
+-#  = @regalo.img_product
+-#%p
+-#  %strong State:
+-#  = @regalo.state
+-#= link_to 'Back', regalos_path

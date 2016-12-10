@@ -1,9 +1,22 @@
 Rails.application.routes.draw do
+  get 'home/landpage'
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+  resources :regalos do
+    collection do
+      get 'show_details'
+    end
+  end
+
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations'}
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'regalos#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
