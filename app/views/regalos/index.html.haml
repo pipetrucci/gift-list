@@ -1,18 +1,3 @@
-%nav
-  .nav-wrapper
-    %a.brand-logo{:href => "#!"} Logo
-    %a.button-collapse{"data-activates" => "mobile-app", :href => "#"}
-      %i.material-icons menu
-    %ul.right.hide-on-med-and-down
-      %li
-        %a hola
-      %li
-        %a.waves-effect.waves-light.btn-large{href: "#regalos"}
-          Regalanos!
-
-    %ul#mobile-app.side-nav
-      %li
-        %a mobile
 
 .parallax-container
   .section.no-pad-bot
@@ -26,7 +11,8 @@
     .container
       %h3.valign.center.light.white-text
         Que tu amor inagotable nos rodee,
-        %strong Señor
+        %strong
+          Señor
         , porque solo en ti está nuestra esperanza.
       %h4.white-text.center
         Salmos 33:22
@@ -52,42 +38,36 @@
       .col.offset-m1.m10
         - @regalos.each do |regalo|
           .col.s12.m6
-            .card.horizontal.hoverable.white
-              .row
+            .card.card-gift.horizontal.hoverable.white
+              .card-content
                 .col.s12.m6
-                  .card-content
-                    -#= link_to "#" do
-                    = image_tag "#{regalo.img_product.url.present? ? regalo.img_product.url : 'http://placehold.it/250x236'}", class: "img-responsive materialboxed", width: "100%"
+                  = image_tag "#{regalo.img_product.url.present? ? regalo.img_product.url : 'http://placehold.it/250x236'}", class: "img-responsive materialboxed", width: "100%"
                 .col.s12.m6
-                  .card-content
-                    .col.s12.m12
-                      .title-regalo
-                        .light
-                          = regalo.name
-                    .col.s6.m12
-                      -if regalo.state == 1
-                        -if regalo.user_id.present?
-                          - user = User.find(regalo.user_id)
-                          .chip.truncate
-                            = image_tag user.img_contact.thumb.url
-                            = user.name
-                      -else
-                        .chip.green.darken-1
-                          .white-text
-                            Disponible
-                    .col.s6.m12
-                      - if !regalo.price_min.present?
-                        %p
-                          Precio:
-                          = number_to_currency(regalo.price_max, precision: 0, separator: ".", unit: "$", format: "%u %n")
-                      - else
-                        %p Rango de precios:
+                  .title-regalo
+                    .light
+                      = regalo.name
+
+                  .price-text.light
+                    - if !regalo.price_min.present?
+                      %p
+                        Precio:
+                        = number_to_currency(regalo.price_max, precision: 0, separator: ".", unit: "$", format: "%u %n")
+                    - else
+                      %p
+                        Precio:
                         = "#{number_to_currency(regalo.price_min, precision: 0, separator: ".", unit: "$", format: "%u %n")} - #{number_to_currency(regalo.price_max, precision: 0, separator: ".", unit: "$", format: "%u %n")}"
 
 
-                  -#.card-action.teal
-                  -#  .hide-on-med-and-up
-                  -#    -#= link_to regalo, class: "btn btn-block btn-primary" do
-                  -#    = link_to 'Ver Detalles', {:action => 'show_details', :id_regalo => regalo.id}, {:class => 'waves-effect waves-light teal', :method => 'get', remote: true, form: { "data-type" => "script" }}
-                  -#    -#= link_to "#modal1", class: "waves-effect waves-light btn modal-trigger" do
-                  -#      Ver Detalles
+                  -if regalo.state == 1
+                    -if regalo.user_id.present?
+                      - user = User.find(regalo.user_id)
+                      .chip.truncate
+                        = image_tag user.img_contact.thumb.url
+                        = user.name
+                  -else
+                    .chip.green.darken-1
+                      .white-text
+                        Disponible
+
+                  .pd-top
+                    = link_to 'Regalar!', new_user_registration_path, {:class => 'btn waves-effect waves-light teal', :method => 'get', remote: true, form: { "data-type" => "script" }}

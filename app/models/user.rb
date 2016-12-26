@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validate :invite_code_valid, :on => :create
   validates_processing_of :img_contact
   validate :image_size_validation
+  validates :email, uniqueness: true
 
   private
 

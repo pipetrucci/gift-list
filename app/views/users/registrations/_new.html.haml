@@ -1,0 +1,37 @@
+#modal1.modal
+  .modal-content
+    %h2
+      Registrate
+    .row
+      .col.s12.m8
+        -if @error_message.present?
+          %h4 Errores de registro
+          %ul
+            - @error_message.each do |error|
+              %li
+                = error
+    .row
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), format: :json, remote: true) do |f|
+        .col.offset-s2.s8
+          .input-field
+            = f.text_field :name, class: 'validate', autofocus: true
+            = f.label :name, "Nombre completo"
+
+          .input-field
+            = f.email_field :email, class: 'validate'
+            = f.label :email, "Email", 'data-error'=> "El email no tiene formato válido"
+
+          .file-field.input-field
+            .btn.teal.lighten-4
+              %span.black-text Foto
+              = f.file_field :img_contact
+            .file-path-wrapper
+              %input.file-path.validate{type: 'text', placeholder: "Sube una foto de perfil"}
+
+          .input-field
+            = f.text_field :invite_code, class: 'validate', autocomplete: 'off'
+            = f.label :invite_code, "Código de seguridad"
+
+          = submit_tag "Registrar", class: "btn waves-effect waves-light" do
+            %i.material-icons.right
+              send

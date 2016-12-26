@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
-  before_action :permit_invite_code
+  respond_to :json, :js
 
   # GET /resource/sign_up
   # def new
@@ -9,9 +9,31 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    build_resource(sign_up_params)
+
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message! :notice, :signed_up_but_unconfirmed
+        expire_data_after_sign_in!
+        respond_to do |format|
+          format.js {render :js => "window.location = '#{after_inactive_sign_up_path_for(resource)}'"}
+        end
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+      @error_message = resource.errors.full_messages
+      render "users/registrations/new"
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -39,8 +61,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def permit_invite_code
-    devise_parameter_sanitizer.for(:sign_up) << :invite_code
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:invite_code, :name])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
