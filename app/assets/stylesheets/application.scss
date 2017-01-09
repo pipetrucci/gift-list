@@ -1,9 +1,20 @@
 @import "materialize";
 
-.parallax-container {
-  height: 300px;
+.parallax-container{
+  height: 450px;
 }
-
+.no-pad-bot {
+  height: 450px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.opacity-wrap{
+  height: 450px;
+  background-image: asset_url("flores.jpg");
+  background-position: 5% 9%;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 1;
+}
 .title-regalo {
   height: 55px;
   font-weight: 900;
@@ -23,4 +34,19 @@
 
 .card-gift {
   height: 220px;
+}
+.white-text{
+  color: #fff;
+}
+.mr-top-ten{
+  margin-top: 10em;
+}
+.lemonada{
+  font-family: 'Lemonada', cursive;
+}
+.arima{
+  font-family: 'Arima Madurai', cursive;
+}
+.right{
+  text-align: right;
 }
