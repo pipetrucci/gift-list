@@ -5,7 +5,7 @@
 }
 .no-pad-bot {
   height: 450px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .opacity-wrap{
   height: 450px;
@@ -13,7 +13,6 @@
   background-position: 5% 9%;
   background-size: cover;
   background-attachment: fixed;
-  opacity: 1;
 }
 .title-regalo {
   height: 55px;
@@ -49,4 +48,19 @@
 }
 .right{
   text-align: right;
+}
+.pd-right{
+  padding-right: 1em;
+}
+.u-green{
+  background-color: #043742;
+}
+.btn-gift{
+  border-radius: 8px;
+  font-weight: bold;
+  padding: 0px 20px;
+}
+nav .brand-logo {
+  font-size: 1.5rem;
+  padding: 0 0 0 1em;
 }
