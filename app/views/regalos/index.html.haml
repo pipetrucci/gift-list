@@ -2,29 +2,30 @@
 .parallax-container
   .opacity-wrap
     .section.no-pad-bot
-      .container.mr-top-ten.center
-        %h4.header.center.white-text MATRIMONIO
-        %h1.header.center.white-text.lemonada Felipe y Camila
-        %hr.withe-text{:width => "40%"}
-        %h5.white-text.center.pd-top
+      .container.mr-top-ten.center.black-text
+        %h4.header.center MATRIMONIO
+        %h1.header.center.lemonada Felipe y Camila
+        %hr.black-text{:width => "40%"}
+        %h5.center.pd-top
           25 de Febrero de 2017
-        %i.fa.fa-heart-o.center.white-text.fa-2x
-        %i.fa.fa-heart-o.center.white-text.fa-2x
+        %i.fa.fa-heart-o.center.fa-2x
+        %i.fa.fa-heart-o.center.fa-2x
 
-.section.u-green.darken-1
+.section.u-versiculo.darken-1
   .valign-wrapper{style: "height: 200px;"}
-    .container
-      %h5.valign.center.light.white-text.arima
-        %i.fa.fa-angle-double-left.white-text
+    .container.white-text
+      %h5.valign.center.light.arima
+        %i.fa.fa-angle-double-left
         Que tu amor inagotable nos rodee, Señor, porque solo en ti está nuestra esperanza.
-        %i.fa.fa-angle-double-right.white-text
-      %h6.white-text.right.pd-right
+        %i.fa.fa-angle-double-right
+      %h6.right.pd-right
         Salmos 33:22
 
 .divider
 
 #regalos.section.scrollspy
   -#.row{style: "background: url(#{image_url("bg-pink-hearts.jpg")}) left top repeat;"}
+  #show_details
   .row.white.pd-top-two.center
     .col.m12
       %p#notice= notice
@@ -38,8 +39,6 @@
           Estos regalos los hemos escogido cuidadosamente
           para que sean parte de nuestro hogar. Se parte tú también :D
       %br
-
-    #show_details
 
     .row
       .col.offset-m1.m10
