@@ -75,5 +75,10 @@
                     .white-text
                       Disponible
 
-                .pd-top-2
-                  = link_to 'Regalar!', {:controller => "users/registrations",:action => 'new', :id_regalo => regalo.id}, {:class => 'btn waves-effect waves-light teal', :method => 'get', remote: true, form: { "data-type" => "script" }}
+                -if regalo.state == 1
+                  .pd-top-2
+                    %a.btn.waves-effect.waves-light.teal{type: "button", disabled: true}
+                      Regalado
+                -else
+                  .pd-top-2
+                    = link_to 'Regalar!', {:controller => "users/registrations",:action => 'new', :id_regalo => regalo.id}, {:class => 'btn waves-effect waves-light teal', :method => 'get', remote: true, form: { "data-type" => "script" }}
