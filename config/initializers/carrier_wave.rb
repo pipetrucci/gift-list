@@ -1,19 +1,12 @@
 require 'carrierwave/orm/activerecord'
-if Rails.env.development? || Rails.env.test?
-  CarrierWave.configure do |config|
-    config.storage = :file
-  end
-end
 
-if Rails.env.production?
-  CarrierWave.configure do |config|
-    config.storage = :fog
-    config.fog_credentials = {
-        :provider               => 'AWS',
-        :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],
-        :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY'],
-        :region                 => ENV['AWS_REGION']
-    }
-    config.fog_directory  = ENV['AWS_DIRECTORY']
-  end
+CarrierWave.configure do |config|
+  config.storage = :fog
+  config.fog_credentials = {
+      :provider               => 'AWS',
+      :aws_access_key_id      => 'AKIAIGLUYPBSI4Y3FCCA',
+      :aws_secret_access_key  => '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',
+      :region                 => 'sa-east-1'
+  }
+  config.fog_directory  = 'bodapipecami'
 end
