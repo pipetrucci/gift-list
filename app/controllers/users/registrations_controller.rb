@@ -1,35 +1,35 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
+  skip_before_filter :verify_authenticity_token, :only => :create
 # before_action :configure_account_update_params, only: [:update]
   respond_to :json, :js
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    @regalo = Regalo.find(params[:id_regalo])
+    super
+  end
 
   # POST /resource
   def create
     build_resource(sign_up_params)
+    @regalo = Regalo.find(params[:regalo])
+    resource.invite_code = params[:user][:invite_code]
+    resource.skip_password_validation = true
+    if resource.save
+      @regalo.user = resource
+      @regalo.state = 1
+      @regalo.save
+      set_flash_message! :notice, :signed_up
+      sign_up(resource_name, resource)
 
-    resource.save
-    yield resource if block_given?
-    if resource.persisted?
-      if resource.active_for_authentication?
-        set_flash_message! :notice, :signed_up
-        sign_up(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
-      else
-        set_flash_message! :notice, :signed_up_but_unconfirmed
-        expire_data_after_sign_in!
-        respond_to do |format|
-          format.js {render :js => "window.location = '#{after_inactive_sign_up_path_for(resource)}'"}
-        end
-      end
+      render "regalos/confirmation"
+      # respond_to do |format|
+      #   format.js {redirect_to controller: '/regalos', action: 'confirmation', user: resource.id, regalo: @regalo.id, format: :js}
+      # end
+      #respond_with resource, location: after_sign_up_path_for(resource)
     else
-      clean_up_passwords resource
-      set_minimum_password_length
-      respond_with resource
+      resource.invite_code = ""
       @error_message = resource.errors.full_messages
       render "users/registrations/new"
     end
@@ -62,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:invite_code, :name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:invite_code, :name, :img_contact])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

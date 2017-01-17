@@ -62,7 +62,9 @@ gem 'carrierwave-imageoptimizer'
 
 
 # Materialize front-end framework
-gem 'materialize-sass'
+gem 'materialize-sass', '0.97.7'
 
 gem 'rails_12factor', group: :production
 gem 'puma'
+
+gem 'remotipart', '~> 1.2'

@@ -8,17 +8,23 @@ class User < ActiveRecord::Base
 
   mount_uploader :img_contact, ImgContactUploader
 
+  attr_accessor :skip_password_validation
   attr_accessor :invite_code
   validate :invite_code_valid, :on => :create
   validates_processing_of :img_contact
   validate :image_size_validation
-  validates :email, uniqueness: true
 
   private
 
+  def password_required?
+    return false if skip_password_validation
+    super
+  end
+
   def invite_code_valid
-    unless self.invite_code == "pipecami2502"
-      self.errors.add(:invite_code, "Código inválido. Intenta nuevamente o contactate con felipe.fabiop@gmail.com")
+
+    if self.invite_code.casecmp("pipecami2502") != 0
+      self.errors.add(:invite_code, "inválido. Intenta nuevamente o escríbeme a felipe.fabiop@gmail.com")
     end
   end
 

@@ -1,24 +1,26 @@
 #modal1.modal
   .modal-content
-    %h2
-      Registrate
+    %h3.center
+      Ingresa tus datos
+
     .row
-      .col.s12.m8
+      .col.s12.offset-m2.m8
         -if @error_message.present?
-          %h4 Errores de registro
+          %h5 Corrige estos errores
           %ul
             - @error_message.each do |error|
-              %li
+              %li.red-text.text-darken-2
                 = error
     .row
-      = form_for(resource, as: resource_name, url: registration_path(resource_name), format: :json, remote: true) do |f|
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :multipart => true }, remote: true) do |f|
+        %input{:name => "regalo", :type => "hidden", :value => "#{@regalo.id}"}
         .col.offset-s2.s8
           .input-field
-            = f.text_field :name, class: 'validate', autofocus: true
+            = f.text_field :name, class: 'validate', autofocus: true, required: true
             = f.label :name, "Nombre completo"
 
           .input-field
-            = f.email_field :email, class: 'validate'
+            = f.email_field :email, class: 'validate', required: true
             = f.label :email, "Email", 'data-error'=> "El email no tiene formato válido"
 
           .file-field.input-field
@@ -26,10 +28,10 @@
               %span.black-text Foto
               = f.file_field :img_contact
             .file-path-wrapper
-              %input.file-path.validate{type: 'text', placeholder: "Sube una foto de perfil"}
+              %input.file-path.validate{type: 'text', placeholder: "Sube una foto tuya por favor :)", required: true}
 
           .input-field
-            = f.text_field :invite_code, class: 'validate', autocomplete: 'off'
+            = f.text_field :invite_code, class: 'validate', autocomplete: 'off', required: true
             = f.label :invite_code, "Código de seguridad"
 
           = submit_tag "Registrar", class: "btn waves-effect waves-light" do

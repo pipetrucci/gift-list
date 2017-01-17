@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :regalos do
     collection do
       get 'show_details'
+      get :confirmation
     end
   end
 

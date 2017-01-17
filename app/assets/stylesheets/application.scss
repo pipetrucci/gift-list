@@ -22,11 +22,12 @@
 .pd-top {
   margin-top: 10px;
 }
-
-.img-responsive {
-  max-height: 180px;
+.pd-top-2 {
+  margin-top: 22px;
 }
-
+.mg-left {
+  margin-left: 10px;
+}
 .price-text {
   font-size: small;
 }
@@ -48,6 +49,9 @@
 }
 .right{
   text-align: right;
+}
+.left{
+  text-align: left;
 }
 .pd-right{
   padding-right: 1em;
@@ -74,4 +78,13 @@ nav .brand-logo {
 }
 .gr-text{
   color: #0B544E;
+}
+
+.container {
+  width: 85%;
+}
+
+.modal2 {
+  width: 75% !important;
+  max-height: 100% !important;
 }

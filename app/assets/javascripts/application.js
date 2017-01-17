@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require turbolinks
+//= require jquery.remotipart
 //= require materialize-sprockets
 //= require_tree .

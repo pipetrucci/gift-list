@@ -1,0 +1,32 @@
+#modal2.modal.modal2
+  .modal-content
+    %h4.center
+      Regalo reservado!
+    %p
+      #{resource.name},
+      ya eres parte de nuestra lista de regalos y parte de nuestro hogar,
+      seguro tu regalo nos será de mucha ayuda.
+      %br
+      Te recordamos que puedes comprarlo en este link, o en cualquier
+      otro lugar que te acomode más:
+
+    %span Regalo: #{@regalo.name}
+    %br
+    %a{href: "#{@regalo.link}", target: "_blank"}
+      #{@regalo.link}
+
+    %p
+      Si gustas puedes venir a entregarnos tu regalo personalmente o
+      enviarlo a: Lautaro #1341, Barrancas, San Antonio (casa de la Cami,
+      nuestra casa estamos arreglando cosas aún)
+    %p
+      Cualquier consulta con los novios (+56985491510 Felipe/+65994686375 Cami)
+    %p
+      Atte.
+    %p.center
+      %b
+        Felipe & Cami <3
+
+  .modal-footer
+    %a.modal-action.modal-close.waves-effect.waves-green.btn-flat{href: root_url}
+      Salir

@@ -21,3 +21,16 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+      attributes:
+        user:
+          email: "Email"
+          invite_code: "Código seguridad"
+      errors:
+        models:
+          user:
+            attributes:
+              email:
+                taken: "ya ha sido utilizado"
+              invite_code:
+                invalid: "invalido"

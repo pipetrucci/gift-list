@@ -40,40 +40,40 @@
           para que sean parte de nuestro hogar. Se parte tú también :D
       %br
 
-    .row
-      .col.offset-m1.m10
-        - @regalos.each do |regalo|
+    .row.left
+      .container
+        - @regalos.order("state DESC").each do |regalo|
           .col.s12.m6
             .card.card-gift.horizontal.hoverable.white
-              .card-content
-                .col.s12.m6
-                  = image_tag "#{regalo.img_product.url.present? ? regalo.img_product.url : 'http://placehold.it/250x236'}", class: "img-responsive materialboxed", width: "100%"
-                .col.s12.m6
-                  .title-regalo
-                    .light
-                      = regalo.name
+              .card-image
+                %a{href: "#{regalo.link}", target: "_blank"}
+                  = image_tag "#{regalo.img_product.url.present? ? regalo.img_product.url : 'http://placehold.it/250x236'}", class: "", height: "220"
+              .card-content.mg-left
+                .title-regalo
+                  .light
+                    = link_to regalo.name, regalo.link, target: "_blank"
 
-                  .price-text.light
-                    - if !regalo.price_min.present?
-                      %p
-                        Precio:
-                        = number_to_currency(regalo.price_max, precision: 0, separator: ".", unit: "$", format: "%u %n")
-                    - else
-                      %p
-                        Precio:
-                        = "#{number_to_currency(regalo.price_min, precision: 0, separator: ".", unit: "$", format: "%u %n")} - #{number_to_currency(regalo.price_max, precision: 0, separator: ".", unit: "$", format: "%u %n")}"
+                .price-text.light
+                  - if !regalo.price_min.present?
+                    %p
+                      Precio:
+                      = number_to_currency(regalo.price_max, precision: 0, separator: ".", unit: "$", format: "%u %n")
+                  - else
+                    %p
+                      Precio:
+                      = "#{number_to_currency(regalo.price_min, precision: 0, separator: ".", unit: "$", format: "%u %n")} - #{number_to_currency(regalo.price_max, precision: 0, separator: ".", unit: "$", format: "%u %n")}"
 
 
-                  -if regalo.state == 1
-                    -if regalo.user_id.present?
-                      - user = User.find(regalo.user_id)
-                      .chip.truncate
-                        = image_tag user.img_contact.thumb.url
-                        = user.name
-                  -else
-                    .chip.green.darken-1
-                      .white-text
-                        Disponible
+                -if regalo.state == 1
+                  -if regalo.user_id.present?
+                    - user = User.find(regalo.user_id)
+                    .chip.truncate.pd-top
+                      = image_tag user.img_contact.thumb.url
+                      = user.name
+                -else
+                  .chip.green.darken-1.pd-top
+                    .white-text
+                      Disponible
 
-                  .pd-top
-                    = link_to 'Regalar!', new_user_registration_path, {:class => 'btn waves-effect waves-light teal', :method => 'get', remote: true, form: { "data-type" => "script" }}
+                .pd-top-2
+                  = link_to 'Regalar!', {:controller => "users/registrations",:action => 'new', :id_regalo => regalo.id}, {:class => 'btn waves-effect waves-light teal', :method => 'get', remote: true, form: { "data-type" => "script" }}
