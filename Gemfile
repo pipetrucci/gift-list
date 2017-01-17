@@ -68,3 +68,4 @@ gem 'rails_12factor', group: :production
 gem 'puma'
 
 gem 'remotipart', '~> 1.2'
+gem 'fog'
