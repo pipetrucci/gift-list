@@ -46,8 +46,6 @@ ActiveAdmin.register User do
     f.inputs "Regalo Details" do
       f.input :email
       f.input :name
-      f.input :password
-      f.input :password_confirmation
       f.input :img_contact, as: :file, :image_preview => true
     end
     f.actions
