@@ -23,7 +23,7 @@
   margin-top: 10px;
 }
 .pd-top-2 {
-  margin-top: 22px;
+  margin-top: 30px;
 }
 .mg-left {
   margin-left: 10px;
@@ -54,7 +54,7 @@
   text-align: left;
 }
 .pd-right{
-  padding-right: 1em;
+  padding-right: 8em;
 }
 .u-green{
   background-color: #043742;
@@ -72,6 +72,28 @@ nav .brand-logo {
   .mr-top-ten{
     margin-top: 5em;
   }
+  .opacity-wrap {
+    height: 450px;
+    background-image: asset_url("flores.jpg");
+    background-position: 4% 9%;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  .u-bride-img{
+    max-width: 100% !important;
+    border: solid 2.5px white;
+    border-radius: 6px;
+  }
+  .u-bride-icon{
+    max-width: 20% !important;
+    display: block;
+    padding: 0.3em 0 0.5em 0;
+    margin: auto;
+  }
+  .u-bride-paragraph{
+    display: block;
+    width: 80%;
+  }
 }
 .pd-top-two{
   padding-top: 3em;
@@ -87,4 +109,22 @@ nav .brand-logo {
 .modal2 {
   width: 75% !important;
   max-height: 100% !important;
+}
+.u-green-light{
+  background-color: #26a69a;
+}
+.u-bride-img{
+  max-width: 90%;
+  border: solid 2.5px white;
+  border-radius: 6px;
+}
+.u-bride-icon{
+  max-width: 70%;
+  display: inherit;
+  padding-top: 0.3em;
+}
+.u-bride-paragraph{
+  display: inline;
+  width: 80%;
+  text-align: justify;
 }
