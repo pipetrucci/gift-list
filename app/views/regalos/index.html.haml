@@ -71,7 +71,7 @@
 
     .row.left
       .container
-        - @regalos.order("state DESC").each do |regalo|
+        - @regalos.order("price_max DESC, user_id DESC").each do |regalo|
           .col.s12.m6
             .card.card-gift.horizontal.hoverable.white
               .card-image
